@@ -116,7 +116,7 @@ object main{
 
 
   def exact_F2(x: RDD[String]) : Long = {
-    val ans=x.map(i =>x.reduceByKey(_ + _)).foldleft(0)(_+_._1)
+    val ans=x.map(i => math.pow(i.count,2).toInt).reduceByKey(_ + _)
     return ans
   }
 
