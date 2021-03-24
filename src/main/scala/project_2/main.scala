@@ -12,7 +12,7 @@ object main{
 
   class hash_function(numBuckets_in: Long) extends Serializable {  // a 2-universal hash family, numBuckets_in is the numer of buckets
     val p: Long = 2147483587;  // p is a prime around 2^31 so the computation will fit into 2^63 (Long)
-    val a: Long = (rand.nextLong %(p-1)) + 1  // a is a random number is [1,p]
+    val a: Long = (rand.nextLong %(p-1)) + 1  // a is a random number in [1,p]
     val b: Long = (rand.nextLong % p) // b is a random number in [0,p]
     val numBuckets: Long = numBuckets_in
 
