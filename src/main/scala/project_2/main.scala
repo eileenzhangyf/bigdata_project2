@@ -105,7 +105,12 @@ object main{
 
 
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
-
+    //run tug-of-war-sketch for width*depth times
+    val x:Int=0
+    x+hash(s)
+    //how to store the resuls?
+    groupBy(width)
+    val counter: Int=0
   }
 
 
@@ -116,7 +121,7 @@ object main{
 
 
   def exact_F2(x: RDD[String]) : Long = {
-    val ans=x.map(i => math.pow(i.count,2).toInt).reduceByKey(_ + _)
+    val ans=x.map(i => math.pow(i.count(),2)).reduceByKey(_ + _)
     return ans
   }
 
