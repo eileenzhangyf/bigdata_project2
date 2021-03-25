@@ -88,8 +88,9 @@ object main{
 
   def tidemark(x: RDD[String], trials: Int): Double = {
     val h = Seq.fill(trials)(new hash_function(2000000000))
-
+    //merge two sketches
     def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,trials).map(i => scala.math.max(accu1(i), accu2(i)))
+    //hash the string and see which is bigger
     def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,trials).map( i =>  scala.math.max(accu1(i), h(i).zeroes(h(i).hash(s))) )
 
     val x3 = x.aggregate(Seq.fill(trials)(0))( param1, param0)
