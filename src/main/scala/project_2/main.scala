@@ -106,6 +106,9 @@ object main{
 
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
     //run tug-of-war-sketch for width*depth times
+    (1 to width*depth)foreach.()
+    
+    
     val x:Int=0
     x+hash(s)
     //how to store the resuls?
