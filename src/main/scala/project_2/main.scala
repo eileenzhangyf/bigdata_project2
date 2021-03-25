@@ -106,7 +106,12 @@ object main{
 
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
     //run tug-of-war-sketch for width*depth times
-    (1 to width*depth)foreach.()
+    val h=Seq.fill(width*depth)(new hash_function(2000000000))
+    
+    def param0=
+    def param1=
+    
+
     
     
     val x:Int=0
@@ -124,7 +129,7 @@ object main{
 
 
   def exact_F2(x: RDD[String]) : Long = {
-    val ans=x.map(i => math.pow(i.count(),2)).reduceByKey(_ + _)
+    val ans:Long=x.map(i => (i,1)).reduceByKey(_ + _).mapValues(math.pow(_,2)).map(_._2).sum.longValue
     return ans
   }
 
