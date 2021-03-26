@@ -109,17 +109,17 @@ object main{
     //run tug-of-war-sketch for width*depth times
     val h=Seq.fill(width*depth)(new hash_function(2000000000))
     
-    def param0=
-    def param1=
+    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,width*depth).map(i => scala.math.max(accu1(i), accu2(i)))
+    def param1 = (accu1: Seq[Int], s: String, c:Int) => Seq.range(0,width*depth).map( i => i+c*(h(i).hash(s)) )
     
+    val x3 = x.aggregate(Seq.fill(depth*width)(0)(param1, param0)
+    val ans = x3.map(z => scala.math.pow(_,2)).sortwith(_ < _).grouped(width)                
+    
+                  
+    return ans
 
     
     
-    val x:Int=0
-    x+hash(s)
-    //how to store the resuls?
-    groupBy(width)
-    val counter: Int=0
   }
 
 
@@ -130,7 +130,7 @@ object main{
 
 
   def exact_F2(x: RDD[String]) : Long = {
-    val ans:Long=x.map(i => (i,1)).reduceByKey(_ + _).mapValues(math.pow(_,2)).map(_._2).sum.longValue
+    val ans:Long=x.map(i => (i,1)).reduceByKey(_ + _).mapValues(scala.math.pow(_,2)).map(_._2).sum.longValue
     return ans
   }
 
