@@ -104,21 +104,21 @@ object main{
 
   }
 
-
+  def mean(xs: Iterable[Double]) = xs.sum / xs.size
+  
+  
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
-    //run tug-of-war-sketch for width*depth times
     val h=Seq.fill(width*depth)(new hash_function(2000000000))
     
     def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,width*depth).map(i => scala.math.max(accu1(i), accu2(i)))
     def param1 = (accu1: Seq[Int], s: String, c:Int) => Seq.range(0,width*depth).map( i => i+c*(h(i).hash(s)) )
     
-    val x3 = x.aggregate(Seq.fill(depth*width)(0)(param1, param0)
-    val ans = x3.map(z => scala.math.pow(_,2)).sortwith(_ < _).grouped(width)                
+    val x3 = x.aggregate(Seq.fill(depth*width)(0))(param1, param0)
+    val ans = x3.map(z => scala.math.pow(_,2)).grouped(width).toList.map(xs => mean(xs))
+    //.sortWith(_ < _)((width*depth)/2)      
     
                   
     return ans
-
-    
     
   }
 
