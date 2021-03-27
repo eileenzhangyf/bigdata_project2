@@ -104,7 +104,7 @@ object main{
 
   }
 
-  def mean(xs: Iterable[Double]) = xs.sum / xs.size
+  def mean(list:List[Double]):Double = if(list.isEmpty) 0 else list.sum/list.size
   
   
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
@@ -114,9 +114,9 @@ object main{
     def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,width*depth).map( i => i+(h(i).hash(s)) )
     
     val x3 = x.aggregate(Seq.fill(depth*width)(0))(param1, param0)
-    val ans = x3.map(z => scala.math.pow(_,2)).grouped(width).toList.map(xs => mean(xs))
+    val ans = x3.map(z => scala.math.pow(_,2)).grouped(width).toList.foreach(x=>mean(x.toList))
     //.sortWith(_ < _)((width*depth)/2)      
-    
+    //get the value of map
                   
     return ans
     
