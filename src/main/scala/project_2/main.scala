@@ -76,13 +76,13 @@ object main{
       this(Set((s, z_of_s )) , z_of_s, bucket_size_in)
     }
 
-    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */
+   // def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */
 
-    }
+    //}
 
-    def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
+  //  def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
 
-    }
+  //  }
   }
 
 
@@ -100,9 +100,9 @@ object main{
   }
 
 
-  def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
+  //def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
 
-  }
+  //}
 
   def mean(seq:Seq[Double]):Double = if(seq.isEmpty) 0 else seq.sum/seq.size
   
