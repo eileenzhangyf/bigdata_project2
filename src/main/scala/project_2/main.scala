@@ -154,7 +154,7 @@ object main{
         println("Usage: project_2 input_path BJKST #buckets trials")
         sys.exit(1)
       }
-      val ans = BJKST(dfrdd, args(2).toInt, args(3).toInt)
+      //val ans = BJKST(dfrdd, args(2).toInt, args(3).toInt)
 
       val endTimeMillis = System.currentTimeMillis()
       val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
