@@ -160,7 +160,7 @@ object main{
       val durationSeconds = (endTimeMillis - startTimeMillis) / 1000
 
       println("==================================")
-      println("BJKST Algorithm. Bucket Size:"+ args(2) + ". Trials:" + args(3) +". Time elapsed:" + durationSeconds + "s. Estimate: "+ans)
+      //println("BJKST Algorithm. Bucket Size:"+ args(2) + ". Trials:" + args(3) +". Time elapsed:" + durationSeconds + "s. Estimate: "+ans)
       println("==================================")
     }
     else if(args(1)=="tidemark") {
