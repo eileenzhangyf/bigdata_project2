@@ -104,6 +104,11 @@ object main{
     val h=Seq.fill(trials)(new hash_function(200000000))
     val B=scala.collection.mutable.Set[(String,Int)]()
     
+    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,trials).map(i => scala.math.max(accu1(i), accu2(i)))
+    def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,trials).map( i =>  scala.math.max(accu1(i), h(i).zeroes(h(i).hash(s))) )
+    
+    
+    
   }
 
   def mean(seq:Seq[Double]):Double = if(seq.isEmpty) 0 else seq.sum/seq.size
