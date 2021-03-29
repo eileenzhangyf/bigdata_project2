@@ -121,7 +121,7 @@ object main{
     def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,width*depth).map( i => i+(h(i).hash(s)).toInt )
     
     val x3 = x.aggregate(Seq.fill(depth*width)(0))(param1, param0)
-    val ans=x3.map(z=>scala.math.pow(z,2)).grouped(width).toList.map(x=>mean(x)).sortWith(_ < _)(depth*width/2).toLong
+    val ans=x3.map(z=>scala.math.pow(z,2)).grouped(width).toList.map(x=>mean(x)).sortWith(_ < _)((depth*width)/2).toLong
                   
     return ans
     
