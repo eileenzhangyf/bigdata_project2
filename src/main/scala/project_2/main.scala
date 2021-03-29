@@ -100,9 +100,11 @@ object main{
   }
 
 
-  //def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
-
-  //}
+  def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
+    val h=Seq.fill(trials)(new hash_function(200000000))
+    val B=scala.collection.mutable.Set[(String,Int)]()
+    
+  }
 
   def mean(seq:Seq[Double]):Double = if(seq.isEmpty) 0 else seq.sum/seq.size
   
