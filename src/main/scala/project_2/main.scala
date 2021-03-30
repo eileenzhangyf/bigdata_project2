@@ -77,11 +77,11 @@ object main{
     }
 
    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */
-
+      this+that
    }
 
   def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
-
+      that+this(Set((s,z_of_s)), z_of_s, bucket_size_in)
   }
   }
 
@@ -102,10 +102,13 @@ object main{
 
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
     val h=Seq.fill(trials)(new hash_function(200000000))
-    val B=scala.collection.mutable.Set[(String,Int)]()
     
-    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,trials).map(i => scala.math.max(accu1(i), accu2(i)))
-    def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,trials).map( i =>  scala.math.max(accu1(i), h(i).zeroes(h(i).hash(s))) )
+    def param0=(accu1: BJSKTSketch, accu2: BJSKTSketch) => BJSKTSketch.range(0,trials).map(i=> +that)
+    
+    def param1=(accu1: BJSKTSketch, s:String) => BJSKTSketch.range(0,trials).map(i=> add_string(s, h(i).zeros(h(i).hash(s))) )
+    
+    val x2=x.aggregate(Seq.fill(trials)(0))(param1, param0)
+    val ans=
     
     
     
@@ -115,13 +118,13 @@ object main{
   
   
   def Tug_of_War(x: RDD[String], width: Int, depth:Int) : Long = {
-    val h=Seq.fill(width*depth)(new hash_function(2000000000))
+    val h=Seq.fill((width*depth))(new hash_function(2000000000))
     
-    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,width*depth).map(i => scala.math.max(accu1(i), accu2(i)))
-    def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,width*depth).map( i => i+(h(i).hash(s)).toInt )
+    def param0 = (accu1: Seq[Int], accu2: Seq[Int]) => Seq.range(0,(width*depth)).map(i => scala.math.max(accu1(i), accu2(i)))
+    def param1 = (accu1: Seq[Int], s: String) => Seq.range(0,(width*depth)).map( i => i+(h(i).hash(s)).toInt )
     
     val x3 = x.aggregate(Seq.fill(depth*width)(0))(param1, param0)
-    val ans=x3.map(z=>scala.math.pow(z,2)).grouped(width).toList.map(x=>mean(x)).sortWith(_ < _)((depth*width)/2).toLong
+    val ans=x3.map(z=>scala.math.pow(z,2)).grouped(width).toList.map(x=>mean(x)).sortWith(_ < _)(((depth*width))/2).toLong
                   
     return ans
     
