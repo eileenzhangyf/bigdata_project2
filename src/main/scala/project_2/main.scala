@@ -81,7 +81,8 @@ object main{
    }
 
   def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
-      that+this(Set((s,z_of_s)), z_of_s, bucket_size_in)
+      bucket_in +=(s,z_of_s)
+      this(s,z_of_s,bucket_size_in)
   }
   }
 
