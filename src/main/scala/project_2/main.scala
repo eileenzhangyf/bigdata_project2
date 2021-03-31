@@ -108,9 +108,9 @@ object main{
     def param1=(accu1: BJSKTSketch, s:String) => BJSKTSketch.range(0,trials).map(i=> add_string(s, h(i).zeros(h(i).hash(s))) )
     
     val x2=x.aggregate(Seq.fill(trials)(0))(param1, param0)
-    val ans=
+    val ans=x2.map(z=>scala.math.pow(2,z)*(bucket_size_in)).sortWith(_ < _)(trails/2)
     
-    
+    return ans
     
   }
 
