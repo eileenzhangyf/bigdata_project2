@@ -81,8 +81,8 @@ object main{
    }
 
   def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
-      bucket_in +=(s,z_of_s)
-      this(s,z_of_s,bucket_size_in)
+     val bjkstS=new BJKSTSketch(Set((s,z_of_s)),z_of_s, bucket_size_in)
+     return this+bjkstS 
   }
   }
 
@@ -104,7 +104,7 @@ object main{
   def BJKST(x: RDD[String], width: Int, trials: Int) : Double = {
     val h=Seq.fill(trials)(new hash_function(200000000))
     
-    def param0=(accu1: BJSKTSketch, accu2: BJSKTSketch) => BJSKTSketch.range(0,trials).map(i=> +that)
+    def param0=(accu1: BJSKTSketch, accu2: BJSKTSketch) => BJSKTSketch.range(0,trials).map(i=> accu1+accu2)
     
     def param1=(accu1: BJSKTSketch, s:String) => BJSKTSketch.range(0,trials).map(i=> add_string(s, h(i).zeros(h(i).hash(s))) )
     
