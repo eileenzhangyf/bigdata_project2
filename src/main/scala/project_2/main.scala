@@ -77,12 +77,13 @@ object main{
     }
 
    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */
-      this+that
+      
    }
 
   def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
-     val bjkstS=new BJKSTSketch(Set((s,z_of_s)),z_of_s, bucket_size_in)
-     return this+bjkstS 
+    if(z_of_s>z_in) bucket_in+=(s, z_of_s)
+    val ans=new BJKSTSketch(bucket_in,z_of_s, bucket_size_in)
+    return ans
   }
   }
 
