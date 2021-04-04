@@ -17,7 +17,7 @@ Tug-of-War F2 Approximation. Width :10. Depth: 3. Time elapsed:62s. Estimate: 15
 
 ### Run on GCP
 
-Tug-of-War F2 Approximation. Width :10. Depth: 3. Time elapsed:46s. Estimate: 806081490408208896
+Tug-of-War F2 Approximation. Width :10. Depth: 3. Time elapsed:46s. Estimate: 1543457239052606976
 
 ## (3) 
 
