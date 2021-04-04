@@ -77,7 +77,8 @@ object main{
     }
 
    def +(that: BJKSTSketch): BJKSTSketch = {    /* Merging two sketches */
-      
+      var bucket: Set[(String,Int)]=new_bucket
+      var z: Int=scala.math.min(this(z)+that(z))
    }
 
   def add_string(s: String, z_of_s: Int): BJKSTSketch = {   /* add a string to the sketch */
